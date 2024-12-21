@@ -5,57 +5,43 @@
 int main(void)
 {
 
-    int arry[] = {10,15,16,18,19,20,25,30,39,80,90,100,102,201,215,980,1000};
-    int idx;
-    int n = sizeof(arry)/sizeof(arry[0])-1;
-    printf("this is n: %d\n",n);
-    int begin = 0, end = n;
-    int mid = (begin + end)/2;
-    int x;
+    int arr[] = {1,2,3,4,5,1,1,1,1,1,1};
+    int hist[10] = {0};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int k, maxHist = 0, minHist;
 
-
-    x = 1;
-    printf("begin: %d | end: %d | mid: %d\n", begin,end,mid);
-
-    while(end > begin)
+    for (int i=0; i < n; i++)
     {
-        if (arry[mid] > x)
-        {
-            end = mid-1;
-            mid = (begin + end)/2;
-        }
-        else if (arry[mid] < x)
-        {
-            begin = mid+1;
-            mid = (begin + end)/2;
-        }
-        else
-        {
-            printf("last one: \n");
-        }
-        printf("begin: %d | end: %d | mid: %d\n", begin,end,mid);
+        hist[arr[i]]++;
     }
 
 
-    if(arry[mid] < x && arry[mid+1] > x)
+
+    minHist = hist[0];
+    for(int i=0; i < 10; i++)
     {
-        idx = mid+1;
+        if(maxHist < hist[i])
+        {
+            maxHist = hist[i];
+        }
+        if(minHist > hist[i])
+        {
+            minHist = hist[i];
+        }
     }
-    else
+
+    k = (maxHist + maxHist) /2;
+
+    for(int i=0; i < 10; i++)
     {
-        idx = mid;
+        if(hist[i] == k)
+        {
+            printf("the number is: %d\n",i);
+            printf("the k is: %d\n",k);
+        }
     }
-
-
-    printf("%d", idx);
-
-
-
-
 
     return 0;
-
-
 }
 
 
